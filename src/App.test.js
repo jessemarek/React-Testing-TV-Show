@@ -121,6 +121,7 @@ test('renders data after API call is made', async () => {
     //first render component with no episode data
     const { getByText, queryAllByTestId } = render(<App />)
 
+    //Assert no episodes are displayed
     expect(queryAllByTestId(/episodes/i)).toHaveLength(0)
 
     await waitFor(() => {
@@ -128,9 +129,9 @@ test('renders data after API call is made', async () => {
         //Click the dropdown and select a season
         userEvent.click(getByText(/select a season/i))
         userEvent.click(getByText(/season 1/i))
-
-        //Assert the episodes display after selecting a season
-        expect(queryAllByTestId(/episodes/i)).toHaveLength(2)
     })
+
+    //Assert the episodes display after selecting a season
+    expect(queryAllByTestId(/episodes/i)).toHaveLength(2)
 
 })
